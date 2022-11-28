@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   story.init(
     {
-      name: { type: DataTypes.STRING, allowNull: fasle },
+      name: { type: DataTypes.STRING, allowNull: false },
       content: DataTypes.TEXT,
       imageUrl: DataTypes.STRING,
     },
