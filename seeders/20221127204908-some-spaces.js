@@ -4,20 +4,22 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.bulkInsert("spaces", [
       {
-        title: "Test title 1",
-        description: "",
+        title: "Apple's Space",
+        description: "Welcome to Apple's mock space",
         backgroundColor: "#ffffff",
         color: "#000000",
         createdAt: new Date(),
         updatedAt: new Date(),
+        userId: 1,
       },
       {
-        title: "Test title 2",
-        description: "",
+        title: "Space Banananana",
+        description: "Banananananana",
         backgroundColor: "#ffffff",
         color: "#000000",
         createdAt: new Date(),
         updatedAt: new Date(),
+        userId: 2,
       },
     ]);
   },
