@@ -8,6 +8,7 @@ const authRouter = require("./routers/auth");
 //constants
 const { PORT } = require("./config/constants");
 const Space = require("./models").space;
+const Story = require("./models").story;
 
 // Create an express app
 const app = express();
@@ -28,7 +29,14 @@ app.listen(PORT, () => {
   console.log(`Listening on port: ${PORT}`);
 });
 
-app.get("/", async (rea, res) => {
+app.get("/", async (req, res) => {
   const allSpaces = await Space.findAll();
   res.send(allSpaces);
+});
+
+app.get("/spaces/:id", async (req, res) => {
+  const specificSpace = await Space.findByPk(req.params.id, {
+    include: [Story],
+  });
+  res.send(specificSpace);
 });
