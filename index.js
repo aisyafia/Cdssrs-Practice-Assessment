@@ -4,6 +4,7 @@ const corsMiddleWare = require("cors");
 
 //routers
 const authRouter = require("./routers/auth");
+const storyRouter = require("./routers/storyRouter");
 
 //constants
 const { PORT } = require("./config/constants");
@@ -23,6 +24,7 @@ app.use(express.json());
 
 //routes
 app.use("/auth", authRouter);
+app.use("/story", storyRouter);
 
 //start listening
 app.listen(PORT, () => {
@@ -39,19 +41,4 @@ app.get("/spaces/:id", async (req, res) => {
     include: [Story],
   });
   res.send(specificSpace);
-});
-
-app.delete("/spaces/:id/stories/:storyId", async (req, res) => {
-  try {
-    const storyId = parseInt(req.params.storyId);
-    const toDelete = await Story.findByPk(storyId);
-    if (!toDelete) {
-      res.status(404).send("Story is not found");
-    } else {
-      const deleted = await toDelete.destroy();
-      res.send(deleted);
-    }
-  } catch (error) {
-    console.log("there is an error:", error);
-  }
 });
